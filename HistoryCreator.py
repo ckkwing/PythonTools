@@ -69,12 +69,11 @@ def updateHistory(rootPath):
 
 
 listScannedPaths1Rank = [
-    "F:\\Temp",
-    "F:\\Nero BackItUp"
+    "D:\\Media\\Movie\\Carton"
 ]
 
 listScannedPaths2Rank =[
-    "F:\\Temp2"
+    #"G:\\Backup\\Especial"
 ]
 
 for parentPath in listScannedPaths2Rank:
