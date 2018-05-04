@@ -17,7 +17,12 @@ class Pages(object):
 
 def getHTMLResource(url):
     response = requests.get(url)
-    response.encoding = "gbk"
+    # charset_re = response.compile(r'<meta.*?charset=["\']*(.+?)["\'>]', flags=response.I)
+    # pragma_re = response.compile(r'<meta.*?content=["\']*;?charset=(.+?)["\'>]', flags=response.I)
+    # xml_re = response.compile(r'^<\?xml.*?encoding=["\']*(.+?)["\'>]')
+    charset = requests.utils.get_encodings_from_content(response.text)
+    if len(charset) > 0:
+        response.encoding = charset[0]
     return response.text
 
 def getResult(htmlText):
@@ -28,8 +33,10 @@ def getResult(htmlText):
     items = list()
     itemsNew = soup.findAll('th', attrs={'class': 'new'})
     itemsCommon = soup.findAll('th', attrs={'class': 'common'})
+    itemsLock = soup.findAll('th', attrs={'class': 'lock'})
     items.extend(itemsNew)
     items.extend(itemsCommon)
+    items.extend(itemsLock)
     print("total items count is " + str(len(items)))
     for item in items:
         author = item.find_next_sibling('td', attrs={'class': 'author'})
