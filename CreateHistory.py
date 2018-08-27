@@ -63,7 +63,7 @@ def create_histories(root, isfileincluded):
 print("Start-----------------")
 inputStr = input("Selet your folder: ")
 rootpath = inputStr.strip()
-clean(rootpath)
+#clean(rootpath)
 create_histories(rootpath, False)
 print("End-----------------")
 
