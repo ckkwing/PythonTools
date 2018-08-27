@@ -61,8 +61,10 @@ def create_histories(root, isfileincluded):
 
 
 print("Start-----------------")
-clean("H:/DriveSpan")
-create_histories("H:/DriveSpan", False)
+inputStr = input("Selet your folder: ")
+rootpath = inputStr.strip()
+clean(rootpath)
+create_histories(rootpath, False)
 print("End-----------------")
 
 
