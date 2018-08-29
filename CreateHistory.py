@@ -1,7 +1,10 @@
 import os
 import codecs
+import wmi
+import common.Utility
 
-HISTORY_FILE_NAME = "history.history"
+
+HISTORY_FILE_NAME = ".history"
 
 
 def clean(root):
@@ -15,7 +18,7 @@ def clean(root):
 
     for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
-            if filename == HISTORY_FILE_NAME:
+            if common.Utility.get_file_extension(filename) == HISTORY_FILE_NAME:
                 os.remove(os.path.join(dirpath, filename))
 
 
@@ -30,11 +33,8 @@ def create_histories(root, isfileincluded):
 
     for dirpath,dirnames,filenames in os.walk(root):
         print("dirpath: " + dirpath)
-        if "古川" in dirpath:
-            str = "test"
-
         historyList = list()
-        historyfilename = os.path.join(dirpath, HISTORY_FILE_NAME)
+        historyfilename = os.path.join(dirpath, (os.path.basename(dirpath) + HISTORY_FILE_NAME))
         if os.path.exists(historyfilename):
             with codecs.open(historyfilename, "r", encoding='utf-8') as file:
                 for line in file:
@@ -60,7 +60,7 @@ def create_histories(root, isfileincluded):
                 if isfileincluded:
                     for filename in filenames:
                         print("filename: " + filename)
-                        if filename == HISTORY_FILE_NAME:
+                        if common.Utility.get_file_extension(filename) == HISTORY_FILE_NAME:
                             continue
                         newline = os.path.join(dirpath, filename)
                         if newline not in historyList:
@@ -69,9 +69,10 @@ def create_histories(root, isfileincluded):
 
 
 print("Start-----------------")
+c = wmi.WMI()
 inputStr = input("Selet your folder: ")
 rootpath = inputStr.strip()
-#clean(rootpath)
+# clean(rootpath)
 create_histories(rootpath, False)
 print("End-----------------")
 
