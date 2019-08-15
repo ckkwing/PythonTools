@@ -3,7 +3,6 @@ import codecs
 import wmi
 import common.Utility
 
-
 HISTORY_FILE_NAME = ".history"
 
 
@@ -31,7 +30,7 @@ def create_histories(root, isfileincluded):
         print("not a dir")
         return
 
-    for dirpath,dirnames,filenames in os.walk(root):
+    for dirpath, dirnames, filenames in os.walk(root):
         print("dirpath: " + dirpath)
         historyList = list()
         historyfilename = os.path.join(dirpath, (os.path.basename(dirpath) + HISTORY_FILE_NAME))
@@ -75,5 +74,3 @@ rootpath = inputStr.strip()
 # clean(rootpath)
 create_histories(rootpath, False)
 print("End-----------------")
-
-
