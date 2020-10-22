@@ -1,7 +1,7 @@
 import os
 import codecs
 import wmi
-import common.Utility
+import common.utility
 
 HISTORY_FILE_NAME = ".history"
 
@@ -17,7 +17,7 @@ def clean(root):
 
     for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
-            if common.Utility.get_file_extension(filename) == HISTORY_FILE_NAME:
+            if common.utility.get_file_extension(filename) == HISTORY_FILE_NAME:
                 os.remove(os.path.join(dirpath, filename))
 
 
@@ -59,7 +59,7 @@ def create_histories(root, isfileincluded):
                 if isfileincluded:
                     for filename in filenames:
                         print("filename: " + filename)
-                        if common.Utility.get_file_extension(filename) == HISTORY_FILE_NAME:
+                        if common.utility.get_file_extension(filename) == HISTORY_FILE_NAME:
                             continue
                         newline = os.path.join(dirpath, filename)
                         if newline not in historyList:

@@ -2,7 +2,7 @@ import os
 import sys
 
 import psycopg2
-from common import FileHelper
+from common import file_helper
 
 
 class DBController:
