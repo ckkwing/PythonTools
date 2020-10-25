@@ -26,6 +26,10 @@ class FolderCleaner:
                 if not FileHelper.is_suffix(file_path, *suffix_list):
                     os.remove(file_path)
                     print("###########" + os.path.join(root, name) + " removed######")
+            for name in dirs:
+                sub_folder = os.path.join(root, name)
+                if not os.listdir(sub_folder):
+                    os.rmdir(sub_folder)
 
     @staticmethod
     def clean_folder(folder_path, delete_self=True):
